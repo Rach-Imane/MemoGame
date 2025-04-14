@@ -34,8 +34,9 @@ Thumbs.db
 config.properties
 
 # Build directories
-doc/
+!doc/
 !livraison/doc/
+!livraison/dist/
 
 # Package files
 *.nar
