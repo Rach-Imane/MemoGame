@@ -1,0 +1,111 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{pgf-umlsd}
+
+\geometry{a4paper, margin=2.5cm}
+
+\title{Rapport de Conception - Jeu de Mémoire}
+\author{Votre Nom}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+Ce rapport présente la conception et l'implémentation du jeu de mémoire (MemoGame). Ce jeu permet aux joueurs de mémoriser et reproduire des formes géométriques dans un temps limité.
+
+\section{Architecture du Projet}
+Le projet est organisé selon une architecture MVC (Modèle-Vue-Contrôleur) avec les packages suivants :
+\begin{itemize}
+    \item \texttt{model} : Contient les classes représentant les données du jeu
+    \item \texttt{view} : Contient les classes gérant l'interface utilisateur
+    \item \texttt{controller} : Contient les classes gérant la logique du jeu
+    \item \texttt{command} : Implémente le pattern Command pour les actions du jeu
+    \item \texttt{strategy} : Implémente le pattern Strategy pour la génération de formes
+    \item \texttt{evaluation} : Implémente le pattern Strategy pour l'évaluation des scores
+    \item \texttt{state} : Implémente le pattern State pour gérer les différents états du jeu
+\end{itemize}
+
+\section{Design Patterns Utilisés}
+
+\subsection{Pattern MVC (Modèle-Vue-Contrôleur)}
+Le pattern MVC a été implémenté pour séparer les responsabilités dans l'application :
+\begin{itemize}
+    \item \textbf{Modèle} : Gère les données et la logique métier
+    \item \textbf{Vue} : Affiche les données et capture les entrées utilisateur
+    \item \textbf{Contrôleur} : Coordonne les interactions entre le modèle et la vue
+\end{itemize}
+
+\subsection{Pattern Command}
+Le pattern Command a été utilisé pour encapsuler les actions du jeu (ajout de forme, déplacement, etc.) dans des objets. Cela permet :
+\begin{itemize}
+    \item L'annulation et la répétition des actions (undo/redo)
+    \item La séparation entre l'action et son exécution
+\end{itemize}
+
+\subsection{Pattern Strategy}
+Le pattern Strategy a été utilisé pour :
+\begin{itemize}
+    \item La génération de formes (RandomShapeStrategy)
+    \item L'évaluation des scores (ScoreStrategy)
+\end{itemize}
+
+\subsection{Pattern State}
+Le pattern State a été utilisé pour gérer les différents états du jeu :
+\begin{itemize}
+    \item IdleState : État initial, en attente d'interaction
+    \item MovingShapeState : État lors du déplacement d'une forme
+\end{itemize}
+
+\section{Algorithmes Principaux}
+
+\subsection{Génération de Formes}
+L'algorithme de génération de formes utilise une stratégie aléatoire pour créer des formes de différentes tailles et couleurs. Les formes sont placées à des positions aléatoires sur le canvas.
+
+\subsection{Évaluation des Scores}
+L'algorithme d'évaluation des scores compare les formes dessinées par le joueur avec les formes du modèle. Il prend en compte :
+\begin{itemize}
+    \item La position des formes
+    \item La taille des formes
+    \item La couleur des formes
+\end{itemize}
+
+\subsection{Gestion du Timer}
+Le timer est géré par un objet Timer de Java qui déclenche un événement après un délai spécifié. Cela permet de :
+\begin{itemize}
+    \item Limiter le temps de mémorisation
+    \item Limiter le temps de reproduction
+    \item Alterner entre les joueurs en mode deux joueurs
+\end{itemize}
+
+\section{Interface Utilisateur}
+L'interface utilisateur est construite avec Swing et comprend :
+\begin{itemize}
+    \item Un panneau de dessin pour afficher et interagir avec les formes
+    \item Des boutons pour créer différentes formes
+    \item Un sélecteur de couleurs
+    \item Un affichage du score et du temps restant
+    \item Des boutons pour valider, annuler et répéter les actions
+\end{itemize}
+
+\section{Mode Deux Joueurs}
+Le mode deux joueurs permet à deux joueurs de s'affronter en alternant les tours. Chaque joueur a un temps limité pour dessiner ou reproduire des formes.
+
+\section{Conclusion}
+Le jeu de mémoire a été conçu et implémenté en utilisant plusieurs design patterns pour assurer une architecture modulaire et extensible. L'application offre une expérience utilisateur intuitive et des fonctionnalités variées.
+
+\appendix
+\section{Captures d'écran}
+% Insérer ici les captures d'écran de l'application
+
+\end{document} 
