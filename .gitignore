@@ -1,0 +1,47 @@
+# Fichiers compilés
+*.class
+*.jar
+*.war
+*.ear
+
+# Répertoires de build
+build/
+bin/
+out/
+
+# Fichiers IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de logs
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.swp
+*~
+
+# Fichiers de configuration locaux
+config.properties
+
+# Build directories
+doc/
+!livraison/doc/
+
+# Package files
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual machine crash logs
+hs_err_pid* 
