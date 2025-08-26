@@ -37,6 +37,6 @@ Ajoutez ici un GIF ou des captures d'écran du simulateur.
 Ce projet est sous licence MIT (voir `LICENSE`).
 
 ### À propos
-Auteur: remplacez par votre nom. Portfolio: ajoutez le lien de votre portfolio.
+Auteur: Rachmaine Imane. 
 
 
