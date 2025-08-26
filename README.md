@@ -1,42 +1,56 @@
-## Simulateur générique du Jeu de la Vie
+## MemoGame (Java Swing)
 
-Projet Java modulaire permettant de simuler des automates cellulaires génériques (Jeu de la Vie de Conway et variantes), avec support de différentes règles (classique, Covid, Margolus, neurale) et moteurs de calcul (naïf et HashLife).
+Application Java Swing pour créer et manipuler des formes, avec contrôleur, commandes, états d’interaction, stratégies de score et plugins d’apparence. Le projet est construit avec Ant et produit un exécutable `MemoGame.jar`.
 
-### Fonctionnalités
-- **Règles configurables**: classique, Covid, Margolus, neurale (réseau simple)
-- **Taille de grille modifiable** et **réinitialisation**
-- **Moteur HashLife** pour l'accélération des générations
-- **Architecture propre** avec patrons: Stratégie, État, Composite
+### Fonctionnalités principales
+- **Formes**: cercle, rectangle, triangle, étoile, hexagone
+- **Interactions**: ajout, déplacement, sélection (via états d’UI)
+- **Commandes**: ajout/déplacement (architecture Command + gestionnaire)
+- **Scores** (stratégies): exact, strict, approximatif, pondéré par couleur
+- **Apparence** (plugins Look & Feel): Nimbus, Metal, Dark/Nimbus personnalisés
+- **Génération** (stratégies): aléatoire, depuis fichier
 
-### Arborescence prévue
+### Architecture (packages clés)
+- `main.Launcher`: point d’entrée (fenêtre de configuration puis vue principale)
+- `model`: état du jeu, formes (`CircleShape`, `RectangleShape`, `TriangleShape`, `StarShape`, `HexagonShape`), sessions
+- `controller`: contrôleur principal et états d’interaction (`Idle`, `AddingCircle`, `AddingRectangle`, `MovingShape`, etc.)
+- `command`: commandes (`AddShapeCommand`, `MoveShapeCommand`, `CommandManager`)
+- `evaluation`: stratégies de score (`ExactMatchScore`, `StrictScore`, `ApproximateScore`, `ColorWeightedScore`)
+- `strategy`: génération de formes (`RandomShapeStrategy`, `FileShapeStrategy`)
+- `view`: vues Swing (`GameView`, `GameSessionView`, `DrawingPanel`)
+- `view.factory`: plugins Look & Feel (`NimbusUIFactory`, `MetalUIFactory`, `DarkUIFactory`)
+
+### Arborescence
 ```text
-src/
-└── jeuDeLaVie/
-    ├── modele/
-    ├── regles/
-    │   ├── classique/
-    │   ├── covid/
-    │   └── neuronal/
-    ├── moteur/
-    ├── hashlife/
-    ├── vue/
-    │   ├── vue2D/
-    │   └── vue3D/
-    ├── controleur/
-    └── application/
+livraison/
+  ├── build.xml        # Script Ant
+  ├── lib/             # Dépendances (JUnit/Hamcrest incluses)
+  ├── src/             # Code source MemoGame
+  │   ├── main/Launcher.java
+  │   ├── controller/...  model/...  view/...  command/...  evaluation/...  strategy/...  view/factory/...
+  ├── build/           # sortie compilation (généré)
+  ├── dist/            # jar distribuable (généré)
+  └── doc/             # javadoc (généré)
 ```
 
-### Lancement local (à adapter selon votre outillage)
-1. Java 17+ recommandé
-2. Compiler et exécuter `jeuDeLaVie.application.Lancement`
+### Prérequis
+- Java 8+ (Java 11 recommandé)
+- Apache Ant
 
-### Captures/DEMO
-Ajoutez ici un GIF ou des captures d'écran du simulateur.
+### Construire et exécuter
+Depuis le dossier `livraison/`:
+```bash
+ant all         # clean + compile + javadoc + dist
+java -jar dist/MemoGame.jar
+```
+
+### Tests
+Des libs JUnit/Hamcrest sont présentes sous `livraison/lib`. Si des tests sont définis sous `livraison/src/test`, adaptez `build.xml` pour une cible `test` si besoin.
 
 ### Licence
-Ce projet est sous licence MIT (voir `LICENSE`).
+MIT — voir `LICENSE`.
 
 ### À propos
-Auteur: Rachmaine Imane. 
+Auteur: Rachmaine Imane.
 
 
